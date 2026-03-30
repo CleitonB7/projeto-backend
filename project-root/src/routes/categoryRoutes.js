@@ -2,19 +2,10 @@ const express = require('express');
 const router = express.Router();
 const CategoryController = require('../controllers/CategoryController');
 
-// Listar categorias com filtros
 router.get('/', CategoryController.search);
-
-// Buscar categoria por ID
 router.get('/:id', CategoryController.getById);
-
-// Criar nova categoria
 router.post('/', CategoryController.create);
-
-// Atualizar categoria
 router.put('/:id', CategoryController.update);
-
-// Remover categoria
 router.delete('/:id', CategoryController.remove);
 
 module.exports = router;

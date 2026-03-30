@@ -1,19 +1,17 @@
-const app = require('./app');
-
 const express = require('express');
 const cors = require('cors');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 const userRoutes = require('../routes/userRoutes');
-const categoryRoutes = require('./routes/categoryRoutes');
-const productRoutes = require('./routes/productRoutes');
+const categoryRoutes = require('../routes/categoryRoutes');
+// const productRoutes = require('../routes/productRoutes'); // descomente quando criar
 
 class App {
   constructor() {
     this.server = express();
     this.middlewares();
-    this.swaggerConfig(); // Adicionado para organizar o Swagger
+    this.swaggerConfig();
     this.routes();
   }
 
@@ -33,7 +31,7 @@ class App {
         },
         servers: [
           {
-            url: `http://localhost:${process.env.PORT || 3001}`,
+            url: `http://localhost:${process.env.PORT || 3000}`,
             description: 'Servidor Local',
           },
         ],
@@ -47,8 +45,7 @@ class App {
           },
         },
       },
-      // ATENÇÃO: Verifique se suas rotas estão em src/routes ou apenas em routes
-      apis: ['./src/routes/*.js'], 
+      apis: ['./src/routes/*.js'],
     };
 
     const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -58,7 +55,7 @@ class App {
   routes() {
     this.server.use('/v1/usuario', userRoutes);
     this.server.use('/v1/categoria', categoryRoutes);
-    this.server.use('/v1/produto', productRoutes);
+    // this.server.use('/v1/produto', productRoutes);
   }
 }
 
