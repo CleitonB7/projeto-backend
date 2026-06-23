@@ -1,15 +1,15 @@
-const app = require('./config/app'); // seu Express app
-const database = require('./database');
+const app = require('./config/app');
+const database = require('./config/database');
 
 const PORT = process.env.PORT || 3001;
 
-database.connection.sync({ alter: true })
+database.sync({ alter: true })
   .then(() => {
-    console.log('✅ Banco de dados sincronizado com sucesso.');
+    console.log('Banco de dados sincronizado com sucesso.');
     app.listen(PORT, () => {
-      console.log(`✅ Servidor rodando na porta ${PORT}`);
+      console.log(`Servidor rodando na porta ${PORT}`);
     });
   })
   .catch(err => {
-    console.error('❌ Não foi possível sincronizar o banco de dados:', err);
+    console.error('Erro ao sincronizar banco:', err);
   });
