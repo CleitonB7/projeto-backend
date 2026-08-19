@@ -5,7 +5,7 @@ const swaggerUi = require('swagger-ui-express');
 
 const userRoutes = require('../routes/userRoutes');
 const categoryRoutes = require('../routes/categoryRoutes');
-// const productRoutes = require('../routes/productRoutes'); // descomente quando criar
+const productRoutes = require('../routes/productRoutes');
 
 class App {
   constructor() {
@@ -55,7 +55,7 @@ class App {
   routes() {
     this.server.use('/v1/usuario', userRoutes);
     this.server.use('/v1/categoria', categoryRoutes);
-    // this.server.use('/v1/produto', productRoutes);
+    this.server.use('/v1/produto', productRoutes);
   }
 }
 
