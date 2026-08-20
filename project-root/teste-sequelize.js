@@ -8,16 +8,25 @@ const sequelize = new Sequelize(
     host: 'localhost',
     port: 1433,
     dialect: 'mssql',
-
     dialectOptions: {
       options: {
         encrypt: false,
         trustServerCertificate: true
       }
     },
-
-    logging: false
+    logging: console.log
   }
 );
 
-module.exports = sequelize;
+async function testar() {
+  try {
+    await sequelize.authenticate();
+    console.log('SEQUELIZE CONECTOU COM SUCESSO!');
+  } catch (error) {
+    console.error('ERRO SEQUELIZE:', error);
+  } finally {
+    await sequelize.close();
+  }
+}
+
+testar();
